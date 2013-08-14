@@ -8,5 +8,6 @@ if (! process.env.HEROKU_API_TOKEN) {
 }
 
 module.exports = {
-  "account" : require('./lib/heroku/account')
-}
+  "Account" : require('./lib/heroku/account'),
+  "App" : require('./lib/heroku/app')
+};
