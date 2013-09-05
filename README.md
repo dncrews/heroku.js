@@ -7,7 +7,20 @@ I'm building this library to extract off the Heroku API to a node library. Does 
 
 
 * Functional
-  * Pretty much nothing, because I want to make it different
+  * Login
+      * POST login - POST /login
+  * Processes
+      * GET ps - GET /apps/:app/ps
+      * POST ps - POST /apps/:app/ps
+      * POST ps restart - POST /apps/:app/ps/restart
+      * POST ps scale - POST /apps/:app/ps/scale
+      * POST ps stop - POST /apps/:app/ps/stop
+      * PUT dynos - PUT /apps/:app/dynos
+      * PUT workers - PUT /apps/:app/workers
+      * PUT formation - PUT /apps/:app/formation
+      * GET dyno types - GET /apps/:app/dyno-types
+  * Version?
+      * just say what version of this api it is
 * Todo
   * Addons
       * DELETE Addon - DELETE /apps/:app/addons/:addon
@@ -47,20 +60,8 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * DELETE keys - DELETE /user/keys
       * GET keys - GET /user/keys
       * POST key - POST /user/keys
-  * Login
-      * POST login - POST /login
   * Logs
       * GET logs - GET /apps/:app/logs
-  * Processes
-      * GET ps - GET /apps/:app/ps
-      * POST ps - POST /apps/:app/ps
-      * POST ps restart - POST /apps/:app/ps/restart
-      * POST ps scale - POST /apps/:app/ps/scale
-      * POST ps stop - POST /apps/:app/ps/stop
-      * PUT dynos - PUT /apps/:app/dynos
-      * PUT workers - PUT /apps/:app/workers
-      * PUT formation - PUT /apps/:app/formation
-      * GET dyno types - GET /apps/:app/dyno-types
   * Releases
       * GET releases - GET /apps/:app/releases
       * GET release - GET /apps/:app/releases/:release
@@ -87,8 +88,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * Rate Limit Exceeded
       * Request Failed
       * Nil App
-  * Version?
-      * just say what version of this api it is
 
 
 
