@@ -107,7 +107,26 @@ npm install https://github.com/dncrews/heroku.js.git
 
 ```js
 var HerokuAPI = require('heroku.js');
-var api = new HerokuAPI(apiKey);
+var api = new HerokuAPI({"apiKey" : apiKey});
+```
+
+#### Instantiate HerokuAPI with an email address and API token
+
+```js
+var HerokuAPI = require('heroku.js');
+var api = new HerokuAPI({"email" : email, "apiToken" : apiToken});
+```
+
+#### Instantiate HerokuAPI with a username and password
+
+```js
+var HerokuAPI = require('heroku.js');
+
+// This call is asyncronous, and requires a callback.
+new HerokuAPI({ "username" : username, "password" : password }, function(api) {
+  
+});
+var api = new HerokuAPI({"email" : email, "apiToken" : apiToken});
 ```
 
 #### Create an application on the cedar stack
