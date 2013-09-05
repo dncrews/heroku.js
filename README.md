@@ -21,6 +21,10 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * GET dyno types - GET /apps/:app/dyno-types
   * Version?
       * just say what version of this api it is
+  * Releases
+      * GET releases - GET /apps/:app/releases
+      * GET release - GET /apps/:app/releases/:release
+      * PUT release - POST /apps/:app/releases/:release
 * Todo
   * Addons
       * DELETE Addon - DELETE /apps/:app/addons/:addon
@@ -62,10 +66,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * POST key - POST /user/keys
   * Logs
       * GET logs - GET /apps/:app/logs
-  * Releases
-      * GET releases - GET /apps/:app/releases
-      * GET release - GET /apps/:app/releases/:release
-      * PUT release - POST /apps/:app/releases/:release
   * Ssl_endpoints
       * DELETE ssl endpoint - DELETE /apps/:app/ssl-endpoint/:cname
       * GET ssl endpoint - GET /apps/:app/ssl-endpoint/:cname
