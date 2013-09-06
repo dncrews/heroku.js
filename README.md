@@ -153,9 +153,6 @@ npm test
       * GET releases - GET /apps/:app/releases
       * GET release - GET /apps/:app/releases/:release
       * PUT release - POST /apps/:app/releases/:release
-  * Version?
-      * just say what version of this api it is
-* Todo
   * Ssl_endpoints
       * DELETE ssl endpoint - DELETE /apps/:app/ssl-endpoint/:cname
       * GET ssl endpoint - GET /apps/:app/ssl-endpoint/:cname
@@ -163,6 +160,9 @@ npm test
       * POST ssl endpoint - POST /apps/:app/ssl-endpoints
       * POST ssl endpoint rollback - POST /apps/:app/ssl-endpoints/:cname/rollback
       * PUT ssl endpoint - PUT /apps/:app/ssl-endpoints/:cname
+  * Version?
+      * just say what version of this api it is
+* Todo
   * Stacks
       * GET stack - GET /apps/:app/stack
       * PUT stack - PUT /apps/:app/stack
