@@ -130,6 +130,11 @@ npm test
       * GET features - GET /features
       * GET feature - GET /features/:feature
       * POST feature - POST /features/:feature
+  * Keys
+      * DELETE key - DELETE /user/keys/:key
+      * DELETE keys - DELETE /user/keys
+      * GET keys - GET /user/keys
+      * POST key - POST /user/keys
   * Login
       * POST login - POST /login
   * Processes
@@ -149,11 +154,6 @@ npm test
   * Version?
       * just say what version of this api it is
 * Todo
-  * Keys
-      * DELETE key - DELETE /user/keys/:key
-      * DELETE keys - DELETE /user/keys
-      * GET keys - GET /user/keys
-      * POST key - POST /user/keys
   * Logs
       * GET logs - GET /apps/:app/logs
   * Ssl_endpoints
