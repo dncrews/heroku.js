@@ -88,6 +88,8 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * Rate Limit Exceeded
       * Request Failed
       * Nil App
+  * Mock API
+      * This one is HUGE. It's to make my tests actually work
 
 
 
