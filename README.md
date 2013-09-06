@@ -35,6 +35,11 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * DELETE domains - DELETE /apps/:app/domains
       * GET domains - GET /apps/:app/domains
       * POST domain - POST /apps/:app/domains
+  * Features
+      * DELETE feature - DELETE /features/:feature
+      * GET features - GET /features
+      * GET feature - GET /features/:feature
+      * POST feature - POST /features/:feature
   * Login
       * POST login - POST /login
   * Processes
@@ -54,11 +59,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
   * Version?
       * just say what version of this api it is
 * Todo
-  * Features
-      * DELETE feature - DELETE /features/:feature
-      * GET features - GET /features
-      * GET feature - GET /features/:feature
-      * POST feature - POST /features/:feature
   * Keys
       * DELETE key - DELETE /user/keys/:key
       * DELETE keys - DELETE /user/keys

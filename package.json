@@ -2,7 +2,7 @@
   "name": "heroku.js",
   "description": "Node.js library for interaction with the Heroku API.",
   "author": "Dan Crews <crewsd+npm@gmail.com>",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/dncrews/heroku.js.git"
