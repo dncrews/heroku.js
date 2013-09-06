@@ -127,7 +127,6 @@ var HerokuAPI = require('heroku.js');
 new HerokuAPI({ "username" : username, "password" : password }, function(api) {
   
 });
-var api = new HerokuAPI({"email" : email, "apiToken" : apiToken});
 ```
 
 #### Create an application on the cedar stack
