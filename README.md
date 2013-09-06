@@ -24,12 +24,12 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * PUT workers - PUT /apps/:app/workers
       * PUT formation - PUT /apps/:app/formation
       * GET dyno types - GET /apps/:app/dyno-types
-  * Version?
-      * just say what version of this api it is
   * Releases
       * GET releases - GET /apps/:app/releases
       * GET release - GET /apps/:app/releases/:release
       * PUT release - POST /apps/:app/releases/:release
+  * Version?
+      * just say what version of this api it is
 * Todo
   * Apps
       * DELETE app - DELETE /apps/:app
