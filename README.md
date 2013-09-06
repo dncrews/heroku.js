@@ -100,7 +100,7 @@ I'm building this library to extract off the Heroku API to a node library. Does 
 1 Install via npm
 
 ```bash
-npm install https://github.com/dncrews/heroku.js.git
+npm install heroku.js
 ```
 
 ### Examples
@@ -133,7 +133,7 @@ new HerokuAPI({ "username" : username, "password" : password }, function(api) {
 
 ```js
 var api = new HerokuAPI(apiKey);
-var app = api.createApp({
+var app = api.postApp({
   "stack" : "Cedar",
   "name" : "MyApp"
 });
@@ -143,7 +143,7 @@ var app = api.createApp({
 
 ```js
 var api = new HerokuAPI(apiKey);
-var apps = api.listApps();
+var apps = api.getApps();
 for (var i=0; l=apps.length; i<l; i++) {
   console.log(app.name);
 }
