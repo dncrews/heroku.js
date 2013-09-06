@@ -26,6 +26,10 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * DELETE collaborator - DELETE /apps/:app/collaborators/:email
       * GET collaborators - GET /apps/:app/collaborators
       * POST collaborator - POST /apps/:app/collaborators
+  * Config_vars
+      * DELETE config_var - DELETE /apps/:app/config_vars/:key
+      * GET config_vars - GET /apps/:app/config_vars
+      * PUT config_vars - PUT /apps/:app/config_vars
   * Login
       * POST login - POST /login
   * Processes
@@ -45,10 +49,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
   * Version?
       * just say what version of this api it is
 * Todo
-  * Config_vars
-      * DELETE config_var - DELETE /apps/:app/config_vars/:key
-      * GET config_vars - GET /apps/:app/config_vars
-      * PUT config_vars - PUT /apps/:app/config_vars
   * Domains
       * DELETE domain - DELETE /apps/:app/domains/:domain
       * DELETE domains - DELETE /apps/:app/domains
