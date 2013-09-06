@@ -20,6 +20,12 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * POST app - POST /apps
       * POST app_maintenance - POST /apps/:app/server/maintenance
       * PUT app - PUT /apps/:app
+  * Attachments ???
+      * GET attachments - GET /apps/:app/attachments
+  * Collaborators
+      * DELETE collaborator - DELETE /apps/:app/collaborators/:email
+      * GET collaborators - GET /apps/:app/collaborators
+      * POST collaborator - POST /apps/:app/collaborators
   * Login
       * POST login - POST /login
   * Processes
@@ -39,12 +45,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
   * Version?
       * just say what version of this api it is
 * Todo
-  * Attachments ???
-      * GET attachments - GET /apps/:app/attachments
-  * Collaborators
-      * DELETE collaborator - DELETE /apps/:app/collaborators/:email
-      * GET collaborators - GET /apps/:app/collaborators
-      * POST collaborator - POST /apps/:app/collaborators
   * Config_vars
       * DELETE config_var - DELETE /apps/:app/config_vars/:key
       * GET config_vars - GET /apps/:app/config_vars
