@@ -137,6 +137,8 @@ npm test
       * POST key - POST /user/keys
   * Login
       * POST login - POST /login
+  * Logs
+      * GET logs - GET /apps/:app/logs
   * Processes
       * GET ps - GET /apps/:app/ps
       * POST ps - POST /apps/:app/ps
@@ -154,8 +156,6 @@ npm test
   * Version?
       * just say what version of this api it is
 * Todo
-  * Logs
-      * GET logs - GET /apps/:app/logs
   * Ssl_endpoints
       * DELETE ssl endpoint - DELETE /apps/:app/ssl-endpoint/:cname
       * GET ssl endpoint - GET /apps/:app/ssl-endpoint/:cname
