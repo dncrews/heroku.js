@@ -7,6 +7,11 @@ I'm building this library to extract off the Heroku API to a node library. Does 
 
 
 * Functional
+  * Addons
+      * DELETE Addon - DELETE /apps/:app/addons/:addon
+      * GET Addon - GET /addons && GET /apps/:app/addons
+      * POST Addon - POST /apps/:app/addons/:addon
+      * PUT Addon - PUT /apps/:app/addons/:addon
   * Login
       * POST login - POST /login
   * Processes
@@ -26,11 +31,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
       * GET release - GET /apps/:app/releases/:release
       * PUT release - POST /apps/:app/releases/:release
 * Todo
-  * Addons
-      * DELETE Addon - DELETE /apps/:app/addons/:addon
-      * GET Addon - GET /addons && GET /apps/:app/addons
-      * POST Addon - POST /apps/:app/addons/:addon
-      * PUT Addon - PUT /apps/:app/addons/:addon
   * Apps
       * DELETE app - DELETE /apps/:app
       * GET apps - GET /apps
