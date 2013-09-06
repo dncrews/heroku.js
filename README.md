@@ -163,11 +163,11 @@ npm test
   * Stacks
       * GET stack - GET /apps/:app/stack
       * PUT stack - PUT /apps/:app/stack
+  * User
+      * GET /user
   * Version?
       * just say what version of this api it is
 * Todo
-  * User
-      * GET /user
   * Different Error Handling
       * Unauthorized
       * Verification Required
