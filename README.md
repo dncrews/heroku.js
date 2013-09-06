@@ -160,12 +160,12 @@ npm test
       * POST ssl endpoint - POST /apps/:app/ssl-endpoints
       * POST ssl endpoint rollback - POST /apps/:app/ssl-endpoints/:cname/rollback
       * PUT ssl endpoint - PUT /apps/:app/ssl-endpoints/:cname
-  * Version?
-      * just say what version of this api it is
-* Todo
   * Stacks
       * GET stack - GET /apps/:app/stack
       * PUT stack - PUT /apps/:app/stack
+  * Version?
+      * just say what version of this api it is
+* Todo
   * User
       * GET /user
   * Different Error Handling
