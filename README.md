@@ -6,12 +6,20 @@ Heroku.js
 I'm building this library to extract off the Heroku API to a node library. Does virtually nothing... yet
 
 
-* Functional
+* Should be fully functional
   * Addons
       * DELETE Addon - DELETE /apps/:app/addons/:addon
       * GET Addon - GET /addons && GET /apps/:app/addons
       * POST Addon - POST /apps/:app/addons/:addon
       * PUT Addon - PUT /apps/:app/addons/:addon
+  * Apps
+      * DELETE app - DELETE /apps/:app
+      * GET apps - GET /apps
+      * GET app - GET /apps/:app
+      * GET app_maintenance - GET /apps/:app/server/maintenance
+      * POST app - POST /apps
+      * POST app_maintenance - POST /apps/:app/server/maintenance
+      * PUT app - PUT /apps/:app
   * Login
       * POST login - POST /login
   * Processes
@@ -31,14 +39,6 @@ I'm building this library to extract off the Heroku API to a node library. Does 
   * Version?
       * just say what version of this api it is
 * Todo
-  * Apps
-      * DELETE app - DELETE /apps/:app
-      * GET apps - GET /apps
-      * GET app - GET /apps/:app
-      * GET app_maintenance - GET /apps/:app/server/maintenance
-      * POST app - POST /apps
-      * POST app_maintenance - POST /apps/:app/server/maintenance
-      * PUT app - PUT /apps/:app
   * Attachments ???
       * GET attachments - GET /apps/:app/attachments
   * Collaborators
