@@ -1,11 +1,20 @@
 {
   "name": "heroku.js",
+  "version": "0.12.2",
   "description": "Node.js library for interaction with the Heroku API.",
+  "homepage" : "http://dncrews.github.io/heroku.js/",
+  "keywords" : [
+    "heroku",
+    "heroku.js",
+    "api"
+  ],
   "author": "Dan Crews <crewsd+npm@gmail.com>",
-  "version": "0.12.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/dncrews/heroku.js.git"
+  },
+  "bugs" : {
+    "url" : "https://github.com/dncrews/heroku.js/issues"
   },
   "main": "index.js",
   "dependencies": {
@@ -21,7 +30,7 @@
   },
   "engines": {
     "node": "0.8.x",
-    "npm": "1.1.x"
+    "npm": "1.2.x"
   },
   "scripts": {
     "test": "make test"
