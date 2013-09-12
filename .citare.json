@@ -1,0 +1,4 @@
+{
+  "glob": ["lib/heroku/**/*.js", "README.md"],
+  "repository-url": "https://github.com/dncrews/heroku.js"
+}
