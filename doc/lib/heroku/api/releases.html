@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/heroku/api/releases</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content="../../../"><meta name="citare-document-path" content="lib/heroku/api/releases"><meta name="citare-project-path" content="lib/heroku/api/releases.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="bg"></div><div id="meta"><div class="file-path">lib/heroku/api/releases.js</div></div><div id="document" class="codedoc"><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="releases" class="anchor" href="#releases"><span></span></a>Releases</h1>
+<p> <div class="toc">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#list-releases">List Releases</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#get-release">Get Release</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/></div></p></div></div><div class="code"><div class="wrapper"><span class="string">'use strict'</span>;
+
+<span class="keyword">var</span> request = require(<span class="string">'../../helpers/superagent'</span>)
+  , baseEndpoint = process.env.HEROKU_API_ENDPOINT || <span class="string">"https://api.heroku.com"</span>;
+
+module.exports = {};</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="list-releases" class="anchor" href="#list-releases"><span></span></a>List Releases</h2>
+<p> Get a list of all releases</p>
+<blockquote>
+<p>GET /apps/:app/releases</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getReleases</li>
+<li>listReleases</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Gets the full list of app releases</span>
+ api.getReleases(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});
+ api.listReleases(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getReleases</span><span class="params">(appName, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .get(baseEndpoint + <span class="string">'/apps/'</span> + appName + <span class="string">'/releases'</span>)
+    .end(next);
+}
+module.exports.getReleases = getReleases;
+module.exports.listReleases = getReleases;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="get-release" class="anchor" href="#get-release"><span></span></a>Get Release</h2>
+<p> Get the information of a specific release</p>
+<blockquote>
+<p>GET /apps/:app/release</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getRelease</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>release {string} : The release id or version</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Get information for release id 01234567-89ab-cdef-0123-456789abcdef</span>
+ api.getRelease(<span class="string">'appName'</span>, <span class="string">'01234567-89ab-cdef-0123-456789abcdef'</span>, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Get information for release version 456</span>
+ api.getRelease(<span class="string">'appName'</span>, <span class="string">'456'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getRelease</span><span class="params">(appName, release, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .get(baseEndpoint + <span class="string">'/apps/'</span> + appName + <span class="string">'/releases/'</span> + release)
+    .end(next);
+}
+module.exports.getRelease = getRelease;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p> Rollback to Release
+ Post a release. This is how you perform a rollback.</p>
+<blockquote>
+<p>POST /apps/:app/release</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>postRelease</li>
+<li>setRelease</li>
+<li>rollback</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>release {string} : The release id or version</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Roll back to id 01234567-89ab-cdef-0123-456789abcdef</span>
+ api.postRelease(<span class="string">'appName'</span>, <span class="string">'01234567-89ab-cdef-0123-456789abcdef'</span>, <span class="keyword">function</span>(err, res) {});
+ api.setRelease(<span class="string">'appName'</span>, <span class="string">'01234567-89ab-cdef-0123-456789abcdef'</span>, <span class="keyword">function</span>(err, res) {});
+ api.rollback(<span class="string">'appName'</span>, <span class="string">'01234567-89ab-cdef-0123-456789abcdef'</span>, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Roll back to version 456</span>
+ api.postRelease(<span class="string">'appName'</span>, <span class="string">'456'</span>, <span class="keyword">function</span>(err, res) {});
+ api.setRelease(<span class="string">'appName'</span>, <span class="string">'456'</span>, <span class="keyword">function</span>(err, res) {});
+ api.rollback(<span class="string">'appName'</span>, <span class="string">'456'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">postRelease</span><span class="params">(appName, release, next)</span> {</span>
+  <span class="keyword">if</span> (! release) next(<span class="keyword">new</span> Error(<span class="string">'No release given'</span>));
+
+  <span class="keyword">return</span> request
+    .post(baseEndpoint + <span class="string">'/apps/'</span> + appName + <span class="string">'/releases'</span>)
+    .query({ <span class="string">'rollback'</span> : release })
+    .end(next);
+}
+module.exports.postRelease = postRelease;
+module.exports.setRelease = postRelease;
+module.exports.rollback = postRelease;</div></div></div><div id="segment-footer"><div id="footer"><a href="https://github.com/druide/citare-scriptum" target="_blank">Generated by Citare scriptum</a></div></div></div></body></html>
