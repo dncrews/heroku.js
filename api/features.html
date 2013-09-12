@@ -21,6 +21,7 @@ module.exports = {};</div></div></div><div class="segment"><div class="comments"
 <li><em>appName {string} : The name of the Heroku app</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// Remove `sumo-rankings` from the account</span>
  api.deleteFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
@@ -56,6 +57,7 @@ module.exports.rmFeature = deleteFeature;</div></div></div><div class="segment">
 <li><em>appName {string} : The name of the Heroku app</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// List features on the account</span>
  api.getFeatures(<span class="keyword">function</span>(err, res) {});
@@ -88,6 +90,7 @@ module.exports.listFeatures = getFeatures;</div></div></div><div class="segment"
 <li><em>appName {string} : The name of the Heroku app</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> api.getFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
  api.getFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res){});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getFeature</span><span class="params">(feature, appName, next)</span> {</span>
@@ -116,6 +119,7 @@ module.exports.getFeature = getFeature;</div></div></div><div class="segment"><d
 <li><em>appName {string} : The name of the Heroku app</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// add Heroku Pipelines to the account</span>
  api.postFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});

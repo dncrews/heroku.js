@@ -49,6 +49,7 @@ GET /apps/:app/addons</p>
 <li>addon {string} : The name of the addon</li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// Get a list of all addons on an account (I think)</span>
  api.getAddons(<span class="keyword">function</span>(err, res) {});
@@ -84,6 +85,7 @@ module.exports.listAddons = getAddons;</div></div></div><div class="segment"><di
 <li><em>config {object} : Key : value of addon configuration</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// Add pgbackups addon to the app</span>
  api.postAddon(<span class="string">'appName'</span>, <span class="string">'pgbackups:basic'</span>, <span class="keyword">function</span>(err, res) {});
@@ -120,6 +122,7 @@ module.exports.addAddon = postAddon;</div></div></div><div class="segment"><div 
 <li><em>config {object} : Key : value of addon configuration</em></li>
 <li>next {Function} : Callback</li>
 </ul>
+<p> <strong><em>Italic parameters are optional</em></strong></p>
 <h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
 <pre><code class="js"> <span class="comment">// Update pgbackups: addon to pgbackups:plus</span>
  api.putAddon(<span class="string">'appName'</span>, <span class="string">'pgbackups:plus'</span>, <span class="keyword">function</span>(err, res) {});
