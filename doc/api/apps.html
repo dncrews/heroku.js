@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><title>api/apps</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content="../"><meta name="citare-document-path" content="api/apps"><meta name="citare-project-path" content="lib/heroku/api/apps.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="bg"></div><div id="meta"><div class="file-path">lib/heroku/api/apps.js</div></div><div id="document" class="codedoc"><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="apps" class="anchor" href="#apps"><span></span></a>Apps</h1>
+<p> <div class="toc">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#delete-app">Delete App</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#list-apps">List Apps</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#get-app">Get App</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#check-app-maintenance">Check App Maintenance</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#create-app">Create App</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#set-app-maintenance">Set App Maintenance</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#update-app">Update App</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/></div></p></div></div><div class="code"><div class="wrapper"><span class="string">'use strict'</span>;
+
+<span class="keyword">var</span> request = require(<span class="string">'../../helpers/superagent'</span>)
+  , baseEndpoint = process.env.HEROKU_API_ENDPOINT || <span class="string">"https://api.heroku.com"</span>;
+
+module.exports = {};</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="delete-app" class="anchor" href="#delete-app"><span></span></a>Delete App</h2>
+<p> Delete an app</p>
+<blockquote>
+<p>DELETE /apps/:app</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>deleteApp</li>
+<li>removeApp</li>
+<li>rmApp</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> api.deleteApp(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">deleteApp</span><span class="params">(appName, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .<span class="keyword">delete</span>(baseEndpoint + <span class="string">'/apps/'</span> + appName)
+    .end(next);
+}
+module.exports.deleteApp = deleteApp;
+module.exports.removeApp = deleteApp;
+module.exports.rmApp = deleteApp;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="list-apps" class="anchor" href="#list-apps"><span></span></a>List Apps</h2>
+<p> Get a list of all of your apps</p>
+<blockquote>
+<p>GET /apps</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getApps</li>
+<li>listApps</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> api.getApps(<span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getApps</span><span class="params">(next)</span> {</span>
+  <span class="keyword">return</span> request
+    .get(baseEndpoint + <span class="string">'/apps'</span>)
+    .end(next);
+}
+module.exports.getApps = getApps;
+module.exports.listApps = getApps;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="get-app" class="anchor" href="#get-app"><span></span></a>Get App</h2>
+<p> Get information on a specific app</p>
+<blockquote>
+<p>GET /apps/:app</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getApp</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> api.getApp(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getApp</span><span class="params">(appName, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .get(baseEndpoint + <span class="string">'/apps/'</span> + appName)
+    .end(next);
+}
+module.exports.getApp = getApp;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="check-app-maintenance" class="anchor" href="#check-app-maintenance"><span></span></a>Check App Maintenance</h1>
+<p> Check to see if your app is in maintenance mode</p>
+<blockquote>
+<p>GET /apps/:app/server/maintenance</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getAppMaintenance</li>
+<li>checkAppMaintenance</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> api.getAppMaintenance(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});
+ api.checkAppMaintenance(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getAppMaintenance</span><span class="params">(appName, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .get(baseEndpoint + <span class="string">'/apps/'</span> + appName + <span class="string">'/server/maintenance'</span>)
+    .end(next);
+}
+module.exports.getAppMaintenance = getAppMaintenance;
+module.exports.checkAppMaintenance = getAppMaintenance;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="create-app" class="anchor" href="#create-app"><span></span></a>Create App</h1>
+<p> Create a new app</p>
+<blockquote>
+<p>POST /apps</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>postApp</li>
+<li>addApp</li>
+<li>createApp</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li><em>params {object} : Key : value of the new app parameters</em></li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Create a new app with all default values, including random generated name</span>
+ api.postApp(<span class="keyword">function</span>(err, res) {});
+ api.addApp(<span class="keyword">function</span>(err, res) {});
+ api.createApp(<span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Create an app named 'awesome-app'</span>
+ api.postApp({ <span class="string">'name'</span> : <span class="string">'awesome-app'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.addApp({ <span class="string">'name'</span> : <span class="string">'awesome-app'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.createApp({ <span class="string">'name'</span> : <span class="string">'awesome-app'</span> }, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Create an app on the Cedar stack</span>
+ api.postApp({ <span class="string">'stack'</span> : <span class="string">'cedar'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.addApp({ <span class="string">'stack'</span> : <span class="string">'cedar'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.createApp({ <span class="string">'stack'</span> : <span class="string">'cedar'</span> }, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">postApp</span><span class="params">(params, next)</span> {</span>
+  <span class="keyword">if</span> (<span class="keyword">typeof</span> params === <span class="string">'function'</span>) {
+    next = params;
+    params = {};
+  }
+  <span class="keyword">if</span> (<span class="keyword">typeof</span> params !== <span class="string">'object'</span>) params = {};
+
+  <span class="keyword">return</span> request
+    .post(baseEndpoint + <span class="string">'/apps'</span>)
+    .query(params)
+    .end(next);
+}
+module.exports.postApp = postApp;
+module.exports.addApp = postApp;
+module.exports.createApp = postApp;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="set-app-maintenance" class="anchor" href="#set-app-maintenance"><span></span></a>Set App Maintenance</h2>
+<p> Put an app into or out of Maintenance Mode</p>
+<blockquote>
+<p>POST /apps/:app/server/maintenance</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>postAppMaintenance</li>
+<li>setAppMaintenance</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>inMaintenance {boolean} : True if app should be in Maintenance Mode</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Put your app into maintenance mode</span>
+ api.postAppMaintenance(<span class="string">'appName'</span>, <span class="literal">true</span>, <span class="keyword">function</span>(err, res) {});
+ api.setAppMaintenance(<span class="string">'appName'</span>, <span class="literal">true</span>, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Put your app out of maintenance mode</span>
+ api.postAppMaintenance(<span class="string">'appName'</span>, <span class="literal">false</span>, <span class="keyword">function</span>(err, res) {});
+ api.setAppMaintenance(<span class="string">'appName'</span>, <span class="literal">false</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">postAppMaintenance</span><span class="params">(appName, inMaintenance, next)</span> {</span>
+  inMaintenance = (inMaintenance === <span class="literal">true</span> || inMaintenance === <span class="string">'true'</span>);
+
+  <span class="keyword">return</span> request
+    .post(baseEndpoint + <span class="string">'/apps/'</span> + appName + <span class="string">'/server/maintenance'</span>)
+    .query({ <span class="string">"maintenance_mode"</span> : inMaintenance })
+    .end(next);
+}
+module.exports.postAppMaintenance = postAppMaintenance;
+module.exports.setAppMaintenance = postAppMaintenance;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="update-app" class="anchor" href="#update-app"><span></span></a>Update App</h1>
+<p> Update name, region (?), stack (?), or owner of an app</p>
+<blockquote>
+<p>PUT /apps/:app</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>putApp</li>
+<li>updateApp</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>appName {string} : The name of the Heroku app</li>
+<li>params {object} : Key : value parameters of what to change on the app</li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Change the name of your Heroku app to 'super-app'</span>
+ api.putApp(<span class="string">'appName'</span>, { <span class="string">'name'</span> : <span class="string">'super-app'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.updateApp(<span class="string">'appName'</span>, { <span class="string">'name'</span> : <span class="string">'super-app'</span> }, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Transfer ownership of your app to the user 'email@example.com'</span>
+ api.putApp(<span class="string">'appName'</span>, { <span class="string">'transfer_owner'</span> : <span class="string">'email@example.com'</span> }, <span class="keyword">function</span>(err, res) {});
+ api.updateApp(<span class="string">'appName'</span>, { <span class="string">'transfer_owner'</span> : <span class="string">'email@example.com'</span> }, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">putApp</span><span class="params">(appName, params, next)</span> {</span>
+  <span class="keyword">return</span> request
+    .put(baseEndpoint + <span class="string">'/apps/'</span> + appName)
+    .query(params)
+    .end(next);
+}
+module.exports.putApp = putApp;
+module.exports.updateApp = putApp;</div></div></div><div id="segment-footer"><div id="footer"><a href="https://github.com/druide/citare-scriptum" target="_blank">Generated by Citare scriptum</a></div></div></div></body></html>

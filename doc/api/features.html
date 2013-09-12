@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><title>api/features</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content="../"><meta name="citare-document-path" content="api/features"><meta name="citare-project-path" content="lib/heroku/api/features.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="bg"></div><div id="meta"><div class="file-path">lib/heroku/api/features.js</div></div><div id="document" class="codedoc"><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="features" class="anchor" href="#features"><span></span></a>Features</h1>
+<p> <div class="toc">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#delete-feature">Delete Feature</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#get-features">Get Features</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#get-feature">Get Feature</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#add-feature">Add Feature</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#functions">Functions</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/></div></p></div></div><div class="code"><div class="wrapper"><span class="string">'use strict'</span>;
+
+<span class="keyword">var</span> request = require(<span class="string">'../../helpers/superagent'</span>)
+  , baseEndpoint = process.env.HEROKU_API_ENDPOINT || <span class="string">"https://api.heroku.com"</span>;
+
+module.exports = {};</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="delete-feature" class="anchor" href="#delete-feature"><span></span></a>Delete Feature</h2>
+<p> Remove a Heroku feature from the account or app</p>
+<blockquote>
+<p>DELETE /features/:feature</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>deleteFeature</li>
+<li>removeFeature</li>
+<li>rmFeature</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>feature {string} : The name of the Heroku feature</li>
+<li><em>appName {string} : The name of the Heroku app</em></li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Remove `sumo-rankings` from the account</span>
+ api.deleteFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ api.removeFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ api.rmFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// Remove 'user_env_compile' from an app</span>
+ api.deleteFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {})
+ api.removeFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {})
+ api.rmFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {})</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">deleteFeature</span><span class="params">(feature, appName, next)</span> {</span>
+  <span class="keyword">if</span> ((<span class="keyword">typeof</span> appName === <span class="string">'function'</span>) &amp;&amp; (! next)) {
+    next = appName;
+    appName = <span class="literal">null</span>;
+  }
+  <span class="keyword">var</span> req = request.<span class="keyword">delete</span>(baseEndpoint + <span class="string">'/features/'</span> + feature);
+  <span class="keyword">if</span> (appName) req.query({ <span class="string">'app'</span> : appName });
+
+  <span class="keyword">return</span> req.end(next);
+}
+module.exports.deleteFeature = deleteFeature;
+module.exports.removeFeature = deleteFeature;
+module.exports.rmFeature = deleteFeature;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="get-features" class="anchor" href="#get-features"><span></span></a>Get Features</h2>
+<p> List features</p>
+<blockquote>
+<p>GET /features</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getFeatures</li>
+<li>listFeatures</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li><em>appName {string} : The name of the Heroku app</em></li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// List features on the account</span>
+ api.getFeatures(<span class="keyword">function</span>(err, res) {});
+ api.listFeatures(<span class="keyword">function</span>(err, res) {});
+ <span class="comment">// List features on an app</span>
+ api.getFeatures(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});
+ api.listFeatures(<span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getFeatures</span><span class="params">(appName, next)</span> {</span>
+  <span class="keyword">if</span> (<span class="keyword">typeof</span> appName === <span class="string">'function'</span>) {
+    next = appName;
+    appName = <span class="literal">null</span>;
+  }
+  <span class="keyword">var</span> req = request.get(baseEndpoint + <span class="string">'/features'</span>);
+  <span class="keyword">if</span> (appName) req.query({ <span class="string">'app'</span> : appName });
+
+  <span class="keyword">return</span> req.end(next);
+}
+module.exports.getFeatures = getFeatures;
+module.exports.listFeatures = getFeatures;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="get-feature" class="anchor" href="#get-feature"><span></span></a>Get Feature</h2>
+<p> Get information on a specific feature</p>
+<blockquote>
+<p>GET /features/:feature</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>getFeature</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>feature {string} : The name of the Heroku feature</li>
+<li><em>appName {string} : The name of the Heroku app</em></li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> api.getFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ api.getFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res){});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">getFeature</span><span class="params">(feature, appName, next)</span> {</span>
+  <span class="keyword">if</span> ((<span class="keyword">typeof</span> appName === <span class="string">'function'</span>) &amp;&amp; (! next)) {
+    next = appName;
+    appName = <span class="literal">null</span>;
+  }
+  <span class="keyword">var</span> req = request.get(baseEndpoint + <span class="string">'/features/'</span> + feature);
+  <span class="keyword">if</span> (appName) req.query({ <span class="string">'app'</span> : appName });
+
+  <span class="keyword">return</span> req.end(next);
+}
+module.exports.getFeature = getFeature;</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="add-feature" class="anchor" href="#add-feature"><span></span></a>Add Feature</h2>
+<p> Add a feature to an account or app</p>
+<blockquote>
+<p>POST /features/:feature</p>
+</blockquote>
+<h3><a name="functions" class="anchor" href="#functions"><span></span></a>Functions</h3>
+<ul>
+<li>postFeature</li>
+<li>addFeature</li>
+</ul>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li>feature {string} : The name of the Heroku feature</li>
+<li><em>appName {string} : The name of the Heroku app</em></li>
+<li>next {Function} : Callback</li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// add Heroku Pipelines to the account</span>
+ api.postFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ api.updateFeature(<span class="string">'sumo-rankings'</span>, <span class="keyword">function</span>(err, res) {});
+ <span class="comment">// add 'user_env_compile' to an app</span>
+ api.postFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});
+ api.updateFeature(<span class="string">'user_env_compile'</span>, <span class="string">'appName'</span>, <span class="keyword">function</span>(err, res) {});</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">postFeature</span><span class="params">(feature, appName, next)</span> {</span>
+  <span class="keyword">if</span> ((<span class="keyword">typeof</span> appName === <span class="string">'function'</span>) &amp;&amp; (! next)) {
+    next = appName;
+    appName = <span class="literal">null</span>;
+  }
+  <span class="keyword">var</span> req = request.post(baseEndpoint + <span class="string">'/features/'</span> + feature);
+  <span class="keyword">if</span> (appName) req.query({ <span class="string">'app'</span> : appName });
+
+  <span class="keyword">return</span> req.end(next);
+}
+module.exports.postFeature = postFeature;
+module.exports.updateFeature = postFeature;</div></div></div><div id="segment-footer"><div id="footer"><a href="https://github.com/druide/citare-scriptum" target="_blank">Generated by Citare scriptum</a></div></div></div></body></html>

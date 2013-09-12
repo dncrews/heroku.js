@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content=""><meta name="citare-document-path" content="index"><meta name="citare-project-path" content="README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta" class="commentsonly"><div class="file-path">README.md</div></div><div id="document" class="commentsonly"><div class="segment commentsonly nocode"><div class="comments commentsonly"><div class="wrapper"><h1><a name="herokujs" class="anchor" href="#herokujs"><span></span></a>Heroku.js</h1>
+<p>The Node.js implementation of the Heroku API. Initially a port of
+<a href="https://github.com/heroku/heroku.rb">Heroku.rb</a>, <a href="https://github.com/heroku/heroku.jar">Heroku.jar</a>
+and <a href="https://github.com/heroku/heroku.py">Heroku.py</a>, but with some Javascript-isms and some
+aliases added for convention and convenience.</p>
+<h2><a name="installation" class="anchor" href="#installation"><span></span></a>Installation</h2>
+<p>1 Install via npm</p>
+<pre><code class="bash">npm install heroku.js</code></pre>
+<h3><a name="usage" class="anchor" href="#usage"><span></span></a>Usage</h3>
+<p>Begin by instantiating with credentials. You can use an application API Key, 
+a user email address and API Token, or a username and password. The latter will
+fetch an API Key first, so it is an asynchronous request. It will require a callback.
+If you pass nothing, it will attempt to read <code>process.env[&#39;HEROKU_API_KEY&#39;]</code></p>
+<pre><code class="js"><span class="comment">// Instantiate with the API Key in the environment</span>
+<span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI();
+
+<span class="comment">// Instantiate with API Key</span>
+<span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI({<span class="string">"apiKey"</span> : apiKey});
+
+<span class="comment">// Instantiate with email and API Token</span>
+<span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI({<span class="string">"email"</span> : email, <span class="string">"apiToken"</span> : apiToken});
+
+<span class="comment">// Instantiate with username and password **Async reminder**</span>
+<span class="keyword">new</span> HerokuAPI({ <span class="string">"username"</span> : username, <span class="string">"password"</span> : password }, <span class="keyword">function</span>(api) {
+  <span class="comment">// Use the `api` here</span>
+});</code></pre>
+<h4><a name="create-an-application-on-the-cedar-stack" class="anchor" href="#create-an-application-on-the-cedar-stack"><span></span></a>Create an application on the cedar stack</h4>
+<pre><code class="js"><span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI(apiKey);
+<span class="keyword">var</span> app = api.postApp({
+  <span class="string">"stack"</span> : <span class="string">"Cedar"</span>,
+  <span class="string">"name"</span> : <span class="string">"MyApp"</span>
+});</code></pre>
+<h4><a name="list-applications" class="anchor" href="#list-applications"><span></span></a>List applications</h4>
+<pre><code class="js"><span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI(apiKey);
+<span class="keyword">var</span> apps = api.getApps();
+<span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; l=apps.length; i &lt; l; i++) {
+  console.log(app.name);
+}</code></pre>
+<h4><a name="add-config" class="anchor" href="#add-config"><span></span></a>Add Config</h4>
+<pre><code class="js"><span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI(apiKey);
+api.putConfigVars(<span class="string">"myExistingApp"</span>, { <span class="string">"SOME_KEY"</span> : <span class="string">"SOMEVALUE"</span> });</code></pre>
+<h4><a name="get-config" class="anchor" href="#get-config"><span></span></a>Get Config</h4>
+<pre><code class="js"><span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI(apiKey);
+<span class="keyword">var</span> config = api.getConfigVars(<span class="string">"myExistingApp"</span>);
+console.log(config);</code></pre>
+<h4><a name="remove-config" class="anchor" href="#remove-config"><span></span></a>Remove Config</h4>
+<pre><code class="js"><span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI(apiKey);
+api.deleteConfigVar(<span class="string">"myExistingApp"</span>, <span class="string">"SOME_KEY"</span>);</code></pre>
+<h2><a name="building-locally" class="anchor" href="#building-locally"><span></span></a>Building Locally</h2>
+<p>1 Clone the repository</p>
+<pre><code class="bash">git clone https://github.com/dncrews/heroku.js.git</code></pre>
+<p>2 Run the testing suite (eventual - This is currently non-functional).</p>
+<pre><code class="bash">npm test</code></pre>
+<ul>
+<li>Todo<ul>
+<li>Different Error Handling<ul>
+<li>Unauthorized</li>
+<li>Verification Required</li>
+<li>Forbidden</li>
+<li>Not Found</li>
+<li>Timeout</li>
+<li>Locked</li>
+<li>Rate Limit Exceeded</li>
+<li>Request Failed</li>
+<li>Nil App</li>
+</ul>
+</li>
+<li>Mock API<ul>
+<li>This one is HUGE. It&#39;s to make my tests actually work</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div></div></div><div id="segment-footer"><div id="footer" class="commentsonly"><a href="https://github.com/druide/citare-scriptum" target="_blank">Generated by Citare scriptum</a></div></div></div></body></html>
