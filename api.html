@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><title>api</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content=""><meta name="citare-document-path" content="api"><meta name="citare-project-path" content="lib/heroku/api.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="bg"></div><div id="meta"><div class="file-path">lib/heroku/api.js</div></div><div id="document" class="codedoc"><div class="segment nocomment"><div class="comments"></div><div class="code"><div class="wrapper"><span class="string">'use strict'</span>;
+<!DOCTYPE html><html lang="en"><head><title>api</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="citare-relative-root" content=""><meta name="citare-document-path" content="api"><meta name="citare-project-path" content="lib/heroku/api.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="bg"></div><div id="meta"><div class="file-path">lib/heroku/api.js</div></div><div id="document" class="codedoc"><div class="segment"><div class="comments"><div class="wrapper"><h1><a name="heroku-api" class="anchor" href="#heroku-api"><span></span></a>Heroku API</h1>
+<p> <div class="toc">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#herokuapi-constructor">HerokuAPI Constructor</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#params">Params</a><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#examples">Examples</a><br/></div></p></div></div><div class="code"><div class="wrapper"><span class="string">'use strict'</span>;
 
 <span class="keyword">var</span> extend = require(<span class="string">'node.extend'</span>)
 
@@ -18,9 +19,26 @@
   , sslEndpoints = require(<span class="string">'./api/sslEndpoints'</span>)
   , stacks = require(<span class="string">'./api/stacks'</span>)
   , processes = require(<span class="string">'./api/processes'</span>)
-  , users = require(<span class="string">'./api/users'</span>);
+  , users = require(<span class="string">'./api/users'</span>);</div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h2><a name="herokuapi-constructor" class="anchor" href="#herokuapi-constructor"><span></span></a>HerokuAPI Constructor</h2>
+<h3><a name="params" class="anchor" href="#params"><span></span></a>Params</h3>
+<ul>
+<li><em>options {object} : Key : value of the credentials</em></li>
+<li><em>next {Function} : Callback used in case of <code>username</code> and <code>password</code></em></li>
+</ul>
+<h3><a name="examples" class="anchor" href="#examples"><span></span></a>Examples</h3>
+<pre><code class="js"> <span class="comment">// Instantiate with the `HEROKU_API_KEY` set in the environment</span>
+ <span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI();
 
-<span class="function"><span class="keyword">function</span> <span class="title">HerokuAPI</span><span class="params">(options, next)</span> {</span>
+ <span class="comment">// Instantiate an API Key</span>
+ <span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI({<span class="string">"apiKey"</span> : apiKey});
+
+ <span class="comment">// Instantiate with email and API Token</span>
+ <span class="keyword">var</span> api = <span class="keyword">new</span> HerokuAPI({<span class="string">"email"</span> : email, <span class="string">"apiToken"</span> : apiToken});
+
+ <span class="comment">// Instantiate with username and password **Async reminder**</span>
+ <span class="keyword">new</span> HerokuAPI({ <span class="string">"username"</span> : username, <span class="string">"password"</span> : password }, <span class="keyword">function</span>(api) {
+   <span class="comment">// Use the `api` here</span>
+ });</code></pre></div></div><div class="code"><div class="wrapper"><span class="function"><span class="keyword">function</span> <span class="title">HerokuAPI</span><span class="params">(options, next)</span> {</span>
   <span class="keyword">var</span> apiKey, username, password;
   <span class="keyword">if</span> (<span class="keyword">typeof</span> options !== <span class="string">'object'</span>) options = {};
 
